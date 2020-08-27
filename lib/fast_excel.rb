@@ -30,7 +30,10 @@ module FastExcel
       end
     else
       require 'tmpdir'
-      filename = "#{Dir.mktmpdir}/fast_excel.xlsx"
+      FileUtils.mkdir_p("#{Rails.root}/exports") unless File.directory?("#{Rails.root}/exports")
+      FileUtils.mkdir_p("#{Rails.root}/exports/tmp") unless File.directory?("#{Rails.root}/exports/tmp")
+
+      filename = "#{Rails.root}/exports/tmp/fast_excel_#{Time.zone.now.to_s}.xlsx"
       tmp_file = true
     end
 
